@@ -1,0 +1,75 @@
+{
+    "name": "starmoozie/crud",
+    "type": "library",
+    "description": "Quickly build an admin interfaces using Laravel 6, CoreUI, Boostrap 4 and jQuery.",
+    "keywords": [
+        "starmoozie",
+        "admin panel for laravel",
+        "coreui for laravel",
+        "bootstrap 4 admin panel laravel",
+        "laravel admin",
+        "CRUD",
+        "admin panel",
+        "CMS",
+        "content management system"
+    ],
+    "homepage": "https://github.com/starmoozie/CRUD",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Starmoozie",
+            "email": "starmoozie@gmail.com"
+        }
+    ],
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "^8.0|^7.0|^6.0",
+        "prologue/alerts": "^0.4.1",
+        "creativeorange/gravatar": "~1.0",
+        "composer/package-versions-deprecated": "^1.8",
+        "doctrine/dbal": "^2.5",
+        "guzzlehttp/guzzle": "^7.0|^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~8.0|~7.0|~9.0",
+        "scrutinizer/ocular": "~1.7|~1.1",
+        "orchestra/testbench": "^6.0|^5.0|^4.0|^3.0",
+        "spatie/laravel-translatable": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Starmoozie\\CRUD\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Starmoozie\\CRUD\\Tests\\": "tests"
+        },
+        "files": ["src/helpers.php"],
+        "exclude-from-classmap": [
+            "**/config"
+        ]
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --testdox",
+        "test-failing": "vendor/bin/phpunit --order-by=defects --stop-on-failure"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Starmoozie\\CRUD\\StarmoozieServiceProvider"
+            ],
+            "aliases": {
+                "CRUD": "Starmoozie\\CRUD\\app\\Library\\CrudPanel\\CrudPanelFacade",
+                "Widget": "Starmoozie\\CRUD\\app\\Library\\Widget"
+            }
+        }
+    },
+    "suggest": {
+        "starmoozie/crud-generators": "Required on localhost to easily generate CRUD, model, controller, request, route, sidebar menu, database schema."
+    }
+}
