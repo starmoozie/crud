@@ -127,6 +127,7 @@
                     delay: $ajaxDelay,
                     data: function (params) {
                         if ($includeAllFormFields) {
+                            form.trigger('starmoozie_field.parse_value', element);
                             return {
                                 q: params.term, // search term
                                 page: params.page, // pagination

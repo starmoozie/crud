@@ -268,10 +268,15 @@ function setupInlineCreateButtons(element) {
         }
 
         //prepare main form fields to be submited in case there are some.
-        if(typeof $includeMainFormFields === "boolean" && $includeMainFormFields === true) {
+        // if(typeof $includeMainFormFields === "boolean" && $includeMainFormFields === true) {
+        if($includeMainFormFields === true) {
             var $toPass = $form.serializeArray();
         }else{
-            if(typeof $includeMainFormFields !== "boolean") {
+            // if(typeof $includeMainFormFields !== "boolean") {
+            if(typeof $includeMainFormFields === "string") {
+            var $fields = JSON.parse($includeMainFormFields);
+            var $serializedForm = $form.serializeArray();
+            var $toPass = [];
             var $fields = JSON.parse($includeMainFormFields);
             var $serializedForm = $form.serializeArray();
             var $toPass = [];
@@ -613,6 +618,7 @@ function bpFieldInitFetchOrCreateElement(element) {
                     quietMillis: 500,
                     data: function (params) {
                     if ($includeAllFormFields) {
+                        form.trigger('starmoozie_field.parse_value', element);
                     return {
                         q: params.term, // search term
                         page: params.page, // pagination
