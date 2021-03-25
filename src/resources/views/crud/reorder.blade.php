@@ -82,7 +82,7 @@ function tree_element($entry, $key, $all_entries, $crud)
 
         </div><!-- /.card -->
 
-        <button id="toArray" class="btn btn-success" data-style="zoom-in"><i class="la la-save"></i> {{ trans('starmoozie::crud.save') }}</button>
+        <button id="toArray" class="btn btn-sm btn-outline-success shadow" data-style="zoom-in"><i class="la la-save"></i> {{ trans('starmoozie::crud.save') }}</button>
     </div>
 </div>
 @endsection

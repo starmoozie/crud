@@ -68,7 +68,6 @@
         data-include-all-form-fields="{{ var_export($field['include_all_form_fields']) }}"
         data-current-value="{{ $field['value'] }}"
         data-field-multiple="{{var_export($field['multiple'])}}"
-        data-app-current-lang="{{ app()->getLocale() }}"
 
         @include('crud::fields.inc.attributes', ['default_class' =>  'form-control'])
 
@@ -124,12 +123,12 @@
 @push('crud_fields_scripts')
 <script>
     // if nullable, make sure the Clear button uses the translated string
-    document.styleSheets[0].addRule('.select2-selection__clear::after','content:  "{{ trans('starmoozie::crud.clear') }}";');
+    document.styleSheets[0].addRule('.select2-selection__clear::after','content:  "{{ trans('backpack::crud.clear') }}";');
 
 
     /**
      *
-     * This method gets called automatically by Starmoozie:
+     * This method gets called automatically by Backpack:
      *
      * @param  node element The jQuery-wrapped "select" element.
      * @return void
@@ -180,20 +179,6 @@
             $(element).select2($select2Settings);
         }
     }
-
-    if (typeof processItemText !== 'function') {
-    function processItemText(item, $fieldAttribute, $appLang) {
-        if(typeof item[$fieldAttribute] === 'object' && item[$fieldAttribute] !== null)  {
-                        if(item[$fieldAttribute][$appLang] != 'undefined') {
-                            return item[$fieldAttribute][$appLang];
-                        }else{
-                            return item[$fieldAttribute][0];
-                        }
-                    }else{
-                        return item[$fieldAttribute];
-                    }
-    }
-}
 </script>
 @endpush
 @endif

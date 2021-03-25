@@ -14,10 +14,14 @@
     $field['multiple'] = $field['multiple'] ?? $crud->guessIfFieldHasMultipleFromRelationType($field['relation_type']);
     $field['data_source'] = $field['data_source'] ?? url($crud->route.'/fetch/'.$routeEntity);
     $field['attribute'] = $field['attribute'] ?? $connected_entity->identifiableAttribute();
-    $field['placeholder'] = $field['placeholder'] ?? ($field['multiple'] ? trans('starmoozie::crud.select_entries') : trans('starmoozie::crud.select_entry'));
+    $field['placeholder'] = $field['placeholder'] ?? ($field['multiple'] ? trans('backpack::crud.select_entries') : trans('backpack::crud.select_entry'));
     $field['include_all_form_fields'] = $field['include_all_form_fields'] ?? true;
-    $field['allows_null'] = $field['allows_null'] ?? $crud->model::isColumnNullable($field['name']);
+
     // Note: isColumnNullable returns true if column is nullable in database, also true if column does not exist.
+    $field['allows_null'] = $field['allows_null'] ?? $crud->model::isColumnNullable($field['name']);
+
+    // this is the time we wait before send the query to the search endpoint, after the user as stopped typing.
+    $field['delay'] = $field['delay'] ?? 500;
 
     // make sure the $field['value'] takes the proper value
     // and format it to JSON, so that select2 can parse it
@@ -73,6 +77,7 @@
         data-include-all-form-fields="{{ var_export($field['include_all_form_fields']) }}"
         data-current-value="{{ $field['value'] }}"
         data-app-current-lang="{{ app()->getLocale() }}"
+        data-ajax-delay="{{ $field['delay'] }}"
 
         @include('crud::fields.inc.attributes', ['default_class' =>  'form-control'])
 
@@ -119,7 +124,7 @@
 @push('crud_fields_scripts')
 <script>
     // if nullable, make sure the Clear button uses the translated string
-    document.styleSheets[0].addRule('.select2-selection__clear::after','content:  "{{ trans('starmoozie::crud.clear') }}";');
+    document.styleSheets[0].addRule('.select2-selection__clear::after','content:  "{{ trans('backpack::crud.clear') }}";');
 
     // if this function is not already on page, for example in fetch_create we add it.
     // this function is responsible for query the ajax endpoint and fetch a default entry
@@ -130,7 +135,6 @@
             var $relatedAttribute = element.attr('data-field-attribute');
             var $relatedKeyName = element.attr('data-connected-entity-key-name');
             var $return = {};
-            var $appLang = element.attr('data-app-current-lang');
 
             return new Promise(function (resolve, reject) {
                 $.ajax({
@@ -144,10 +148,10 @@
                 // we want only the first to be default.
                 if (typeof result.data !== "undefined"){
                     $key = result.data[0][$relatedKeyName];
-                    $value = processItemText(result.data[0], $relatedAttribute, $appLang);
+                    $value = processItemText(result.data[0], $relatedAttribute);
                 }else{
                     $key = result[0][$relatedKeyName];
-                    $value = processItemText(result[0], $relatedAttribute, $appLang);
+                    $value = processItemText(result[0], $relatedAttribute);
                 }
 
                 $pair = { [$relatedKeyName] : $key, [$relatedAttribute] : $value}
@@ -166,7 +170,7 @@
 
     /**
      * Initialize Select2 on an element that wants the "Fetch" functionality.
-     * This method gets called automatically by Starmoozie:
+     * This method gets called automatically by Backpack:
      * - after the Create/Update page loads
      * - after a Fetch is inserted with JS somewhere (ex: in a modal)
      *
@@ -185,9 +189,9 @@
         var $includeAllFormFields = element.attr('data-include-all-form-fields') == 'false' ? false : true;
         var $dependencies = JSON.parse(element.attr('data-dependencies'));
         var $allows_null = element.attr('data-column-nullable') == 'true' ? true : false;
-        var $appLang = element.attr('data-app-current-lang');
         var $selectedOptions = typeof element.attr('data-selected-options') === 'string' ? JSON.parse(element.attr('data-selected-options')) : JSON.parse(null);
         var $multiple = element.prop('multiple');
+        var $ajaxDelay = element.attr('data-ajax-delay');
 
         var FetchAjaxFetchSelectedEntry = function (element) {
             return new Promise(function (resolve, reject) {
@@ -222,7 +226,7 @@
             var optionsForSelect = [];
             FetchAjaxFetchSelectedEntry(element).then(result => {
                 result.forEach(function(item) {
-                    $itemText = processItemText(item, $fieldAttribute, $appLang);
+                    $itemText = processItemText(item, $fieldAttribute);
                     $itemValue = item[$connectedEntityKeyName];
                     //add current key to be selected later.
                     optionsForSelect.push($itemValue);
@@ -279,12 +283,9 @@
                     url: $dataSource,
                     type: $method,
                     dataType: 'json',
-                    quietMillis: 250,
+                    delay: $ajaxDelay,
                     data: function (params) {
                         if ($includeAllFormFields) {
-
-                            form.trigger('starmoozie_field.parse_value', element);
-
                             return {
                                 q: params.term, // search term
                                 page: params.page, // pagination
@@ -304,7 +305,7 @@
                         if(data.data) {
                         var result = {
                             results: $.map(data.data, function (item) {
-                                var $itemText = processItemText(item, $fieldAttribute, $appLang);
+                                var $itemText = processItemText(item, $fieldAttribute);
 
                                 return {
                                     text: $itemText,
@@ -318,7 +319,7 @@
                         }else {
                             var result = {
                                 results: $.map(data, function (item) {
-                                    var $itemText = processItemText(item, $fieldAttribute, $appLang);
+                                    var $itemText = processItemText(item, $fieldAttribute);
 
                                     return {
                                         text: $itemText,
@@ -371,18 +372,18 @@
     }
 
     if (typeof processItemText !== 'function') {
-    function processItemText(item, $fieldAttribute, $appLang) {
-        if(typeof item[$fieldAttribute] === 'object' && item[$fieldAttribute] !== null)  {
-                        if(item[$fieldAttribute][$appLang] != 'undefined') {
-                            return item[$fieldAttribute][$appLang];
-                        }else{
-                            return item[$fieldAttribute][0];
-                        }
-                    }else{
-                        return item[$fieldAttribute];
-                    }
+        function processItemText(item, $fieldAttribute) {
+            var $appLang = '{{ app()->getLocale() }}';
+            var $appLangFallback = '{{ Lang::getFallback() }}';
+            var $emptyTranslation = '{{ trans("backpack::crud.empty_translations") }}';
+            var $itemField = item[$fieldAttribute];
+
+            // try to retreive the item in app language; then fallback language; then first entry; if nothing found empty translation string
+            return typeof $itemField === 'object' && $itemField !== null
+                ? $itemField[$appLang] ?? $itemField[$appLangFallback] ?? Object.values($itemField)[0] ?? $emptyTranslation
+                : $itemField;
+        }
     }
-}
 </script>
 @endpush
 @endif

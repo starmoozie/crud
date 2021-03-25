@@ -75,7 +75,7 @@
     @if ($field['allows_null'])
     <style type="text/css">
         .select2-selection__clear::after {
-            content: ' {{ trans('starmoozie::crud.clear') }}';
+            content: ' {{ trans('backpack::crud.clear') }}';
         }
     </style>
     @endif
@@ -147,7 +147,6 @@
                 delay: $ajaxDelay,
                 data: function (params) {
                     if ($includeAllFormFields) {
-                        form.trigger('starmoozie_field.parse_value', element);
                         return {
                             q: params.term, // search term
                             page: params.page, // pagination
@@ -204,7 +203,6 @@
 
                 // set the option keys as selected.
                 $(element).val(optionsForSelect);
-                $(element).trigger('change');
             });
         }
 
@@ -215,13 +213,22 @@
             var $dependency = $dependencies[i];
             //if element does not have a custom-selector attribute we use the name attribute
             if(typeof element.attr('data-custom-selector') == 'undefined') {
-                //this is a repeatable field, we will find the dependency base on row
-                let elementRow = element.closest('div[data-repeatable-identifier]').attr('data-repeatable-row-number');
-                $('input[data-repeatable-input-name='+$dependency+'][data-repeatable-row-number='+elementRow+'], select[data-repeatable-input-name='+$dependency+'][data-repeatable-row-number='+elementRow+'], checkbox[data-repeatable-input-name='+$dependency+'][data-repeatable-row-number='+elementRow+'], radio[data-repeatable-input-name='+$dependency+'][data-repeatable-row-number='+elementRow+'], textarea[data-repeatable-input-name='+$dependency+'][data-repeatable-row-number='+elementRow+']').change(function () {
-                    element.val(null).trigger("change");
+                form.find(`[name="${$dependency}"], [name="${$dependency}[]"]`).change(function(el) {
+                        $(element.find('option:not([value=""])')).remove();
+                        element.val(null).trigger("change");
                 });
             }else{
-                $('input[name='+$dependency+'], select[name='+$dependency+'], checkbox[name='+$dependency+'], radio[name='+$dependency+'], textarea[name='+$dependency+']').change(function () {
+                // we get the row number and custom selector from where element is called
+                let rowNumber = element.attr('data-row-number');
+                let selector = element.attr('data-custom-selector');
+
+                // replace in the custom selector string the corresponding row and dependency name to match
+                selector = selector
+                    .replaceAll('%DEPENDENCY%', $dependency)
+                    .replaceAll('%ROW%', rowNumber);
+
+                $(selector).change(function (el) {
+                    $(element.find('option:not([value=""])')).remove();
                     element.val(null).trigger("change");
                 });
             }
