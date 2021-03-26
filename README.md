@@ -4,4 +4,4 @@
 - composer require starmoozie/crud
 
 ### How To?
-- Comming Soon
+[Read Doc](https://github.com/starmoozie/crud/tree/master/doc/Operations)
