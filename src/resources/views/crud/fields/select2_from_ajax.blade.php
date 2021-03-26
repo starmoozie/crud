@@ -75,7 +75,7 @@
     @if ($field['allows_null'])
     <style type="text/css">
         .select2-selection__clear::after {
-            content: ' {{ trans('backpack::crud.clear') }}';
+            content: ' {{ trans('starmoozie::crud.clear') }}';
         }
     </style>
     @endif
