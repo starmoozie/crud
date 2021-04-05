@@ -104,7 +104,7 @@ trait HasUploadFields
                     $file_path = $file->storeAs($destination_path, $new_file_name, $disk);
 
                     // 3. Add the public path to the database
-                    $attribute_value[] = $file_path;
+                    $attribute_value[] = $disk.'/'.$file_path;
                 }
             }
         }
