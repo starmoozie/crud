@@ -156,4 +156,14 @@ return [
     // InlineCreateOperation
     'related_entry_created_success' => 'Masukan terkait telah dibuat dan dipilih.',
     'related_entry_created_error' => 'Tidak dapat membuat masukan terkait.',
+
+    'today' => 'Hari Ini',
+    'yesterday' => 'Kemarin',
+    'last_7_days' => 'Seminggu Yang Lalu',
+    'last_30_days' => 'Sebulan Yang Lalu',
+    'this_month' => 'Bulan Ini',
+    'last_month' => 'Bulan Kemarin',
+    'custom_range' => 'Penyesuaian',
+    'weekLabel' => 'M',
+    'apply' => 'Terapkan',
 ];
