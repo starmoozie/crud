@@ -4,7 +4,7 @@
 @endphp
 
 @includeWhen(!empty($widget['wrapper']), 'starmoozie::widgets.inc.wrapper_start')
-    <div class="{{ $widget['class'] ?? 'card' }}">
+    <div class="{{ $widget['class'] ?? 'card shadow-sm' }}">
         <div class="card-body">
             @if (isset($widget['value']))
                 <div class="text-value">{!! $widget['value'] !!}</div>

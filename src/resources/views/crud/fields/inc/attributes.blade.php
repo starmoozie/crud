@@ -1,6 +1,6 @@
 @php
     $field['attributes'] = $field['attributes'] ?? [];
-    $field['attributes']['class'] = $field['attributes']['class'] ?? $default_class ?? 'form-control';
+    $field['attributes']['class'] = $field['attributes']['class'] ?? $default_class ?? 'form-control shadow-sm';
 @endphp
 
 @foreach ($field['attributes'] as $attribute => $value)
