@@ -27,7 +27,7 @@ return [
 
             // stores pagination and filters in localStorage for two hours
             // whenever the user tries to see that page, starmoozie loads the previous pagination and filtration
-            'persistentTable' => true,
+            'persistentTable' => false,
 
             // show search bar in the top-right corner?
             'searchableTable' => true,
@@ -142,7 +142,7 @@ return [
         'show' => [
             // Define the size/looks of the content div for all CRUDs
             // To override per Controller use $this->crud->setShowContentClass('class-string')
-            'contentClass' => 'col-md-8',
+            'contentClass' => 'col-md-12 bold-labels',
         ],
 
         /*
@@ -151,7 +151,7 @@ return [
         'reorder' => [
             // Define the size/looks of the content div for all CRUDs
             // To override per Controller use $this->crud->setReorderContentClass('class-string')
-            'contentClass'   => 'col-md-8 col-md-offset-2',
+            'contentClass'   => 'col-md-12',
         ],
 
     ],

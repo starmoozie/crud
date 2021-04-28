@@ -77,7 +77,7 @@ return [
     'breadcrumbs' => true,
 
     // Horizontal navbar classes. Helps make the admin panel look similar to your project's design.
-    'header_class' => 'app-header bg-light border-0 navbar',
+    'header_class' => 'app-header bg-white border-0 navbar navbar-color shadow-sm',
     // For background colors use: bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
     // For links to be visible on different background colors use: "navbar-dark", "navbar-light", "navbar-color"
 
@@ -86,11 +86,11 @@ return [
     // ----
 
     // Body element classes.
-    'body_class' => 'app aside-menu-fixed sidebar-lg-show',
+    'body_class' => 'app aside-menu-fixed sidebar-lg-show bg-white',
     // Try sidebar-hidden, sidebar-fixed, sidebar-compact, sidebar-lg-show
 
     // Sidebar element classes.
-    'sidebar_class' => 'sidebar sidebar-pills bg-light',
+    'sidebar_class' => 'sidebar sidebar-pills bg-white shadow d-print-none',
     // Remove "sidebar-transparent" for standard sidebar look
     // Try "sidebar-light" or "sidebar-dark" for dark/light links
     // You can also add a background class like bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan
@@ -105,19 +105,19 @@ return [
     // change background color with bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
 
     // Developer or company name. Shown in footer.
-    'developer_name' => 'Starmoozie',
+    'developer_name' => false,
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => '#',
+    'developer_link' => false,
 
     // Show powered by Laravel Starmoozie in the footer? true/false
     'show_powered_by' => false,
 
     // Developer or company name. Shown in footer.
-    'powered_name' => 'Starmoozie',
+    'powered_name' => false,
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'powered_link' => '#',
+    'powered_link' => false,
 
     // -------
     // SCRIPTS
@@ -283,20 +283,4 @@ return [
     //
     // You can rename this disk here. Default: root
     'root_disk_name' => 'root',
-
-    /*
-    |--------------------------------------------------------------------------
-    | License Code
-    |--------------------------------------------------------------------------
-    |
-    | If you, your employer or your client make money by using Starmoozie, you need
-    | to purchase a license. A license code will be provided after purchase,
-    | which you can put here or in your ENV file in staging & production.
-    |
-    | More info and payment form on:
-    | https://www.starmoozieforlaravel.com
-    |
-    */
-
-    'license_code' => env('BACKPACK_LICENSE', false),
 ];

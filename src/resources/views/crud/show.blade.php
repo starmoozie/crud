@@ -2,7 +2,7 @@
 
 @php
   $defaultBreadcrumbs = [
-    trans('starmoozie::crud.admin') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
+    trans('starmoozie::base.dashboard') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
     $crud->entity_name_plural => url($crud->route),
     trans('starmoozie::crud.preview') => false,
   ];
