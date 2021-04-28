@@ -26,6 +26,10 @@
         @include('crud::fields.inc.attributes', ['default_class' =>  'form-control select2_field'])
         >
 
+        @if (isset($field['allows_null']) && $field['allows_null'])
+            <option value="">-</option>
+        @endif
+
         @if (count($options))
             @foreach ($options as $option)
                 @if($current_value == $option->getKey())
