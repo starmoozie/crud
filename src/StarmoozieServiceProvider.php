@@ -11,8 +11,6 @@ use Illuminate\Support\ServiceProvider;
 
 class StarmoozieServiceProvider extends ServiceProvider
 {
-    use Stats, LicenseCheck;
-
     protected $commands = [
         \Starmoozie\CRUD\app\Console\Commands\Install::class,
         \Starmoozie\CRUD\app\Console\Commands\AddSidebarContent::class,
@@ -44,8 +42,6 @@ class StarmoozieServiceProvider extends ServiceProvider
         $this->setupRoutes($this->app->router);
         $this->setupCustomRoutes($this->app->router);
         $this->publishFiles();
-        $this->checkLicenseCodeExists();
-        $this->sendUsageStats();
     }
 
     /**
