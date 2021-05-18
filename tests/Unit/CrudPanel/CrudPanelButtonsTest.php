@@ -4,6 +4,9 @@ namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 
 use Starmoozie\CRUD\app\Library\CrudPanel\CrudButton;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Buttons
+ */
 class CrudPanelButtonsTest extends BaseCrudPanelTest
 {
     private $defaultButtonNames = [];

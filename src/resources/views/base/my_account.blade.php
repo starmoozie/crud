@@ -11,15 +11,15 @@
 
 @php
   $breadcrumbs = [
-      __('starmoozie::crud.admin') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
-      __('starmoozie::base.my_account') => false,
+      trans('starmoozie::crud.admin') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
+      trans('starmoozie::base.my_account') => false,
   ];
 @endphp
 
 @section('header')
     <section class="content-header">
         <div class="container-fluid mb-3">
-            <h1>{{ __('starmoozie::base.my_account') }}</h1>
+            <h1>{{ trans('starmoozie::base.my_account') }}</h1>
         </div>
     </section>
 @endsection
@@ -27,17 +27,9 @@
 @section('content')
     <div class="row">
 
-        @if (session('success'))
-        <div class="{{ config('starmoozie.crud.operations.update.contentClass') }}">
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        </div>
-        @endif
-
         @if ($errors->count())
-        <div class="{{ config('starmoozie.crud.operations.update.contentClass') }}">
-            <div class="alert alert-danger">
+        <div class="{{config('starmoozie.crud.operations.create.contentClass')}}">
+            <div class="alert alert-danger shadow-sm">
                 <ul class="mb-1">
                     @foreach ($errors->all() as $e)
                     <li>{{ $e }}</li>
@@ -48,99 +40,28 @@
         @endif
 
         {{-- UPDATE INFO FORM --}}
-        <div class="{{ config('starmoozie.crud.operations.update.contentClass') }}">
-            <form class="form" action="{{ route('starmoozie.account.info.store') }}" method="post">
-
-                {!! csrf_field() !!}
-
-                <div class="card padding-10">
-
-                    <div class="card-header">
-                        {{ __('starmoozie::base.update_account_info') }}
-                    </div>
-
-                    <div class="card-body starmoozie-profile-form bold-labels">
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                @php
-                                    $label = __('starmoozie::base.name');
-                                    $field = strtolower(__('starmoozie::base.name'));
-                                @endphp
-                                <label class="required">{{ $label }}</label>
-                                <input required class="form-control" type="text" name="{{ $field }}" value="{{ old($field) ? old($field) : $user->$field }}">
-                            </div>
-
-                            <div class="col-md-6 form-group">
-                                @php
-                                    $label = config('starmoozie.base.authentication_column_name');
-                                    $field = starmoozie_authentication_column();
-                                @endphp
-                                <label class="required">{{ $label }}</label>
-                                <input required class="form-control" type="{{ starmoozie_authentication_column()=='email'?'email':'text' }}" name="{{ $field }}" value="{{ old($field) ? old($field) : $user->$field }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                        <button type="submit" class="btn  btn-sm btn-success shadow"><i class="la la-save"></i> {{ __('starmoozie::base.save') }}</button>
-                        <a href="{{ starmoozie_url() }}" class="btn btn-sm btn-info shadow">{{ __('starmoozie::base.cancel') }}</a>
-                    </div>
-                </div>
-
-            </form>
-        </div>
         
-        {{-- CHANGE PASSWORD FORM --}}
-        <div class="{{ config('starmoozie.crud.operations.update.contentClass') }}">
-            <form class="form" action="{{ route('starmoozie.account.password') }}" method="post">
+        <div class="{{config('starmoozie.crud.operations.create.contentClass')}}">
 
-                {!! csrf_field() !!}
-
-                <div class="card padding-10">
-
-                    <div class="card-header">
-                        {{ __('starmoozie::base.change_password') }}
-                    </div>
-
-                    <div class="card-body starmoozie-profile-form bold-labels">
-                        <div class="row">
-                            <div class="col-md-4 form-group">
-                                @php
-                                    $label = __('starmoozie::base.old_password');
-                                    $field = 'old_password';
-                                @endphp
-                                <label class="required">{{ $label }}</label>
-                                <input autocomplete="new-password" required class="form-control" type="password" name="{{ $field }}" id="{{ $field }}" value="">
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                                @php
-                                    $label = __('starmoozie::base.new_password');
-                                    $field = 'new_password';
-                                @endphp
-                                <label class="required">{{ $label }}</label>
-                                <input autocomplete="new-password" required class="form-control" type="password" name="{{ $field }}" id="{{ $field }}" value="">
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                                @php
-                                    $label = __('starmoozie::base.confirm_password');
-                                    $field = 'confirm_password';
-                                @endphp
-                                <label class="required">{{ $label }}</label>
-                                <input autocomplete="new-password" required class="form-control" type="password" name="{{ $field }}" id="{{ $field }}" value="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                            <button type="submit" class="btn  btn-sm btn-success shadow"><i class="la la-save"></i> {{ __('starmoozie::base.change_password') }}</button>
-                            <a href="{{ starmoozie_url() }}" class="btn btn-sm btn-info shadow">{{ __('starmoozie::base.cancel') }}</a>
-                    </div>
-
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item shadow-sm">
+                    <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">{{ trans('starmoozie::base.update_account_info') }}</a>
+                </li>
+                <li class="nav-item shadow-sm">
+                    <a class="nav-link" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab" aria-controls="pills-password" aria-selected="false">{{ trans('starmoozie::base.change_password') }}</a>
+                </li>
+            </ul>
+            <div class="tab-content shadow-sm" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    @includeIf('starmoozie::account.info')
                 </div>
 
-            </form>
+
+                <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
+                    @includeIf('starmoozie::account.password')
+                </div>
+            </div>
+
         </div>
 
     </div>

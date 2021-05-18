@@ -1,4 +1,9 @@
 {{-- Select2 Ajax Starmoozie CRUD filter --}}
+
+@php
+    $filter->options['quiet_time'] = $filter->options['quiet_time'] ?? $filter->options['delay'] ?? 500;
+@endphp
+
 <li filter-name="{{ $filter->name }}"
     filter-type="{{ $filter->type }}"
     filter-key="{{ $filter->key }}"
@@ -16,9 +21,10 @@
                 data-filter-name="{{ $filter->name }}"
                 data-select-key="{{ $filter->options['select_key'] ?? 'id' }}"
                 data-select-attribute="{{ $filter->options['select_attribute'] ?? 'name' }}"
+                data-language="{{ str_replace('_', '-', app()->getLocale()) }}"
                 filter-minimum-input-length="{{ $filter->options['minimum_input_length'] ?? 2 }}"
                 filter-method="{{ $filter->options['method'] ?? 'GET' }}"
-                filter-quiet-time="{{ $filter->options['quiet_time'] ?? 500 }}"
+                filter-quiet-time="{{ $filter->options['quiet_time'] }}"
             >
 				@if (Request::get($filter->name))
 					<option value="{{ Request::get($filter->name) }}" selected="selected"> {{ Request::get($filter->name.'_text') ?? 'Previous selection' }} </option>
@@ -71,7 +77,7 @@
 	<!-- include select2 js-->
     <script src="{{ asset('packages/select2/dist/js/select2.full.min.js') }}"></script>
     @if (app()->getLocale() !== 'en')
-    <script src="{{ asset('packages/select2/dist/js/i18n/' . app()->getLocale() . '.js') }}"></script>
+    <script src="{{ asset('packages/select2/dist/js/i18n/' . str_replace('_', '-', app()->getLocale()) . '.js') }}"></script>
     @endif
 
     <script>
@@ -104,7 +110,7 @@
 				        url: '{{ $filter->values }}',
 				        dataType: 'json',
 				        type: $(this).attr('filter-method'),
-				        quietMillis: $(this).attr('filter-quiet-time'),
+				        delay: $(this).attr('filter-quiet-time'),
 
 				        processResults: function (data) {
                             //it's a paginated result
@@ -141,11 +147,8 @@
 					var ajax_table = $('#crudTable').DataTable();
 					var current_url = ajax_table.ajax.url();
 					var new_url = addOrUpdateUriParameter(current_url, parameter, val);
-					if (val_text) {
-	                    new_url = addOrUpdateUriParameter(new_url, parameter + '_text', val_text);
-					}
+					new_url = addOrUpdateUriParameter(new_url, parameter + '_text', val_text);
 					new_url = normalizeAmpersand(new_url.toString());
-
 
 					// replace the datatables ajax url with new_url and reload it
 					ajax_table.ajax.url(new_url).load();
@@ -155,7 +158,7 @@
 
 					// mark this filter as active in the navbar-filters
 					if (URI(new_url).hasQuery(filterName, true)) {
-						$('li[filter-key='+filterKey+']').removeClass('active').addClass('active');
+						$('li[filter-key='+filterKey+']').addClass('active');
 					}
 					else
 					{

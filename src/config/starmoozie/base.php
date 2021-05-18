@@ -24,7 +24,7 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => env('APP_NAME'),
+    'project_name' => 'Starmoozie Admin Panel',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
@@ -71,13 +71,13 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => env('APP_NAME'),
+    'project_logo'   => '<b>Back</b>pack',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,
 
     // Horizontal navbar classes. Helps make the admin panel look similar to your project's design.
-    'header_class' => 'app-header bg-white border-0 navbar navbar-color shadow-sm',
+    'header_class' => 'app-header bg-white border-0 navbar shadow-sm',
     // For background colors use: bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
     // For links to be visible on different background colors use: "navbar-dark", "navbar-light", "navbar-color"
 
@@ -90,7 +90,7 @@ return [
     // Try sidebar-hidden, sidebar-fixed, sidebar-compact, sidebar-lg-show
 
     // Sidebar element classes.
-    'sidebar_class' => 'sidebar sidebar-pills bg-white shadow d-print-none',
+    'sidebar_class' => 'sidebar sidebar-pills bg-white shadow-sm d-print-none',
     // Remove "sidebar-transparent" for standard sidebar look
     // Try "sidebar-light" or "sidebar-dark" for dark/light links
     // You can also add a background class like bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan
@@ -105,19 +105,16 @@ return [
     // change background color with bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan, bg-white
 
     // Developer or company name. Shown in footer.
-    'developer_name' => false,
+    'developer_name' => 'Starmoozie',
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => false,
+    'developer_link' => '#',
 
-    // Show powered by Laravel Starmoozie in the footer? true/false
-    'show_powered_by' => false,
+    // Show powered by. Type false if you want to hide it.
+    'powered_by' => 'Starmoozie',
 
-    // Developer or company name. Shown in footer.
-    'powered_name' => false,
-
-    // Developer website. Link in footer. Type false if you want to hide it.
-    'powered_link' => false,
+    // Powered website. Link in footer
+    'powered_link'  => '#',
 
     // -------
     // SCRIPTS
@@ -218,9 +215,9 @@ return [
     */
 
     // Fully qualified namespace of the User model
-    'user_model_fqn' => config('auth.providers.users.model'),
+    // 'user_model_fqn' => config('auth.providers.users.model'),
     // 'user_model_fqn' => App\User::class, // works on Laravel <= 7
-    // 'user_model_fqn' => App\Models\User::class, // works on Laravel >= 8
+    'user_model_fqn' => Starmoozie\MenuPermission\app\Models\User::class, // if using starmoozie/menu-permission
 
     // The classes for the middleware to check if the visitor is an admin
     // Can be a single class or an array of classes
@@ -249,9 +246,9 @@ return [
     'passwords' => 'starmoozie',
 
     // What kind of avatar will you like to show to the user?
-    // Default: gravatar (automatically use the gravatar for his email)
+    // Default: gravatar (automatically use the gravatar for their email)
     // Other options:
-    // - placehold (generic image with his first letter)
+    // - placehold (generic image with their first letter)
     // - example_method_name (specify the method on the User model that returns the URL)
     'avatar_type' => 'gravatar',
 

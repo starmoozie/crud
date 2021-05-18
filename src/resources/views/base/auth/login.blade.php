@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-4">
             <h3 class="text-center mb-4">{{ trans('starmoozie::base.login') }}</h3>
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-body">
                     <form class="col-md-12 p-t-10" role="form" method="POST" action="{{ route('starmoozie.auth.login') }}">
                         {!! csrf_field() !!}
@@ -13,7 +13,7 @@
                             <label class="control-label" for="{{ $username }}">{{ config('starmoozie.base.authentication_column_name') }}</label>
 
                             <div>
-                                <input type="text" class="form-control{{ $errors->has($username) ? ' is-invalid' : '' }}" name="{{ $username }}" value="{{ old($username) }}" id="{{ $username }}" autofocus>
+                                <input type="text" class="form-control shadow-sm {{ $errors->has($username) ? ' is-invalid' : '' }}" name="{{ $username }}" value="{{ old($username) }}" id="{{ $username }}" autofocus>
 
                                 @if ($errors->has($username))
                                     <span class="invalid-feedback">
@@ -27,7 +27,7 @@
                             <label class="control-label" for="password">{{ trans('starmoozie::base.password') }}</label>
 
                             <div>
-                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password">
+                                <input type="password" class="form-control shadow-sm {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password">
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -41,7 +41,7 @@
                             <div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> {{ trans('starmoozie::base.remember_me') }}
+                                        <input type="checkbox" name="remember" class=" shadow-sm"> {{ trans('starmoozie::base.remember_me') }}
                                     </label>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
 
                         <div class="form-group">
                             <div>
-                                <button type="submit" class="btn btn-block btn-primary">
+                                <button type="submit" class="btn btn-block btn-outline-primary shadow-sm">
                                     {{ trans('starmoozie::base.login') }}
                                 </button>
                             </div>

@@ -6,6 +6,9 @@ use Starmoozie\CRUD\Tests\Unit\Models\Article;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Tabs
+ */
 class CrudPanelTabsTest extends BaseDBCrudPanelTest
 {
     private $horizontalTabsType = 'horizontal';

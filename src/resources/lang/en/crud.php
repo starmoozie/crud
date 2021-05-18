@@ -22,7 +22,7 @@ return [
 
     // Create form
     'add'                 => 'Add',
-    'back_to_all'         => 'Back to all ',
+    'back_to_all'         => 'Back',
     'cancel'              => 'Cancel',
     'add_a_new'           => 'Add a new ',
 
@@ -42,7 +42,7 @@ return [
     'actions'                   => 'Actions',
     'preview'                   => 'Preview',
     'delete'                    => 'Delete',
-    'admin'                     => 'Admin',
+    'admin'                     => 'Dashboard',
     'details_row'               => 'This is the details row. Modify as you please.',
     'details_row_loading_error' => 'There was an error loading the details. Please retry.',
     'clone'                     => 'Clone',
@@ -174,4 +174,7 @@ return [
     // InlineCreateOperation
     'related_entry_created_success' => 'Related entry has been created and selected.',
     'related_entry_created_error' => 'Could not create related entry.',
+
+    // returned when no translations found in select inputs
+    'empty_translations' => '(empty)',
 ];

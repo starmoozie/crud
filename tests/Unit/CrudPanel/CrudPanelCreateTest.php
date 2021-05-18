@@ -7,6 +7,9 @@ use Starmoozie\CRUD\Tests\Unit\Models\User;
 use Faker\Factory;
 use Illuminate\Support\Arr;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Create
+ */
 class CrudPanelCreateTest extends BaseDBCrudPanelTest
 {
     private $nonRelationshipField = [

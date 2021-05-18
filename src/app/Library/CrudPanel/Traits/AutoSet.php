@@ -224,9 +224,15 @@ trait AutoSet
         if (! $this->driverIsSql()) {
             $columns = $fillable;
         } else {
-            // Automatically-set columns should be both in the database, and in the $fillable variable on the Eloquent Model
-            $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
 
+            $table_name = $this->model->getTable();
+
+            // Automatically-set columns should be both in the database, and in the $fillable variable on the Eloquent Model
+            $columns = \Cache::rememberForever($table_name.'_fillable', function () use ($table_name) {
+                return $this->model->getConnection()->getSchemaBuilder()->getColumnListing($table_name);
+            });
+
+            // $columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($table_name);
             if (! empty($fillable)) {
                 $columns = array_intersect($columns, $fillable);
             }

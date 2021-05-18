@@ -1,34 +1,40 @@
 {
     "name": "starmoozie/crud",
     "type": "library",
-    "description": "Quickly build an admin interfaces using Laravel 6, CoreUI, Boostrap 4 and jQuery.",
+    "description": "Build an admin interfaces using Laravel.",
     "keywords": [
         "starmoozie",
+        "base",
         "admin panel for laravel",
         "coreui for laravel",
         "bootstrap 4 admin panel laravel",
         "laravel admin",
         "CRUD",
+        "BREAD",
+        "create",
+        "update",
+        "delete",
+        "read",
         "admin panel",
+        "admin interface",
         "CMS",
-        "content management system"
+        "content management system",
+        "content management framework"
     ],
     "homepage": "https://github.com/starmoozie/CRUD",
     "license": "MIT",
     "authors": [
         {
-            "name": "Starmoozie",
+            "name": "starmoozie",
             "email": "starmoozie@gmail.com"
         }
     ],
-    "prefer-stable": true,
-    "minimum-stability": "dev",
     "require": {
         "laravel/framework": "^8.0|^7.0|^6.0",
         "prologue/alerts": "^0.4.1",
         "creativeorange/gravatar": "~1.0",
         "composer/package-versions-deprecated": "^1.8",
-        "doctrine/dbal": "^2.5",
+        "doctrine/dbal": "^2.5|^3.0",
         "guzzlehttp/guzzle": "^7.0|^6.3"
     },
     "require-dev": {
@@ -53,7 +59,8 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit --testdox",
-        "test-failing": "vendor/bin/phpunit --order-by=defects --stop-on-failure"
+        "test-failing": "vendor/bin/phpunit --order-by=defects --stop-on-failure",
+        "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text"
     },
     "extra": {
         "branch-alias": {
@@ -70,6 +77,6 @@
         }
     },
     "suggest": {
-        "starmoozie/crud-generators": "Required on localhost to easily generate CRUD, model, controller, request, route, sidebar menu, database schema."
+        "starmoozie/generators": "Required on localhost to easily generate CRUDs, models, controllers etc."
     }
 }

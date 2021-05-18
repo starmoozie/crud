@@ -2,7 +2,7 @@
 
 @php
   $defaultBreadcrumbs = [
-    trans('starmoozie::base.dashboard') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
+    trans('starmoozie::crud.admin') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
     $crud->entity_name_plural => url($crud->route),
     trans('starmoozie::crud.list') => false,
   ];
@@ -79,17 +79,17 @@
                       data-visible="{{var_export($column['visibleInTable'] ?? true)}}"
                       data-can-be-visible-in-table="true"
                       data-visible-in-modal="{{var_export($column['visibleInModal'] ?? true)}}"
-                      @if(isset($column['visibleInExport']))                     
+                      @if(isset($column['visibleInExport']))
                          @if($column['visibleInExport'] === false)
-                           data-visible-in-export="false"   
-                           data-force-export="false"    
-                         @else    
-                           data-visible-in-export="true"    
-                           data-force-export="true"   
-                         @endif   
-                       @else    
-                         data-visible-in-export="true"    
-                         data-force-export="false"    
+                           data-visible-in-export="false"
+                           data-force-export="false"
+                         @else
+                           data-visible-in-export="true"
+                           data-force-export="true"
+                         @endif
+                       @else
+                         data-visible-in-export="true"
+                         data-force-export="false"
                        @endif
                     @endif
                   >
@@ -98,8 +98,8 @@
                 @endforeach
 
                 @if ( $crud->buttons()->where('stack', 'line')->count() )
-                  <th data-orderable="false" 
-                      data-priority="{{ $crud->getActionsColumnPriority() }}" 
+                  <th data-orderable="false"
+                      data-priority="{{ $crud->getActionsColumnPriority() }}"
                       data-visible-in-export="false"
                       >{{ trans('starmoozie::crud.actions') }}</th>
                 @endif
@@ -107,18 +107,6 @@
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-              <tr>
-                {{-- Table columns --}}
-                @foreach ($crud->columns() as $column)
-                  <th>{!! $column['label'] !!}</th>
-                @endforeach
-
-                @if ( $crud->buttons()->where('stack', 'line')->count() )
-                  <th>{{ trans('starmoozie::crud.actions') }}</th>
-                @endif
-              </tr>
-            </tfoot>
           </table>
 
           @if ( $crud->buttons()->where('stack', 'bottom')->count() )

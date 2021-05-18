@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Read
+ */
 class CrudPanelReadTest extends BaseDBCrudPanelTest
 {
     private $relationshipColumn = [

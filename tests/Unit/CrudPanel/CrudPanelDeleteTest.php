@@ -6,6 +6,9 @@ use Starmoozie\CRUD\Tests\Unit\Models\Article;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Delete
+ */
 class CrudPanelDeleteTest extends BaseDBCrudPanelTest
 {
     public function testDelete()

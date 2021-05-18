@@ -1,5 +1,5 @@
 @if ($crud->hasAccess('bulkDelete') && $crud->get('list.bulkActions'))
-	<a href="javascript:void(0)" onclick="bulkDeleteEntries(this)" class="btn btn-sm btn-secondary bulk-button shadow-sm"><i class="la la-trash"></i> {{ trans('starmoozie::crud.delete') }}</a>
+	<a href="javascript:void(0)" onclick="bulkDeleteEntries(this)" class="btn btn-sm btn-outline-secondary shadow-sm bulk-button"><i class="la la-trash"></i> {{ trans('starmoozie::crud.delete') }}</a>
 @endif
 
 @push('after_scripts')
@@ -80,8 +80,13 @@
 								  }			          	  
 							}
 
-						  	crud.checkedItems = [];
-							  	crud.table.ajax.reload();
+							// Move to previous page in case of deleting all the items in table
+							if(crud.table.rows().count() === crud.checkedItems.length) {
+								crud.table.page("previous");
+							}
+
+							crud.checkedItems = [];
+							crud.table.draw(false);
 						},
 						error: function(result) {
 							// Show an alert with the result

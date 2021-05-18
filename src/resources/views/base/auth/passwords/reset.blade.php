@@ -27,7 +27,7 @@
                             <label class="control-label" for="email">{{ trans('starmoozie::base.email_address') }}</label>
 
                             <div>
-                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" value="{{ $email ?? old('email') }}">
+                                <input type="email" class="form-control shadow-sm {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" value="{{ $email ?? old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -41,7 +41,7 @@
                             <label class="control-label" for="password">{{ trans('starmoozie::base.new_password') }}</label>
 
                             <div>
-                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password">
+                                <input type="password" class="form-control shadow-sm {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" autofocus>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label class="control-label" for="password_confirmation">{{ trans('starmoozie::base.confirm_new_password') }}</label>
                             <div>
-                                <input type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" id="password_confirmation">
+                                <input type="password" class="form-control shadow-sm {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" id="password_confirmation">
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="invalid-feedback">
@@ -66,7 +66,7 @@
 
                         <div class="form-group mb-3">
                             <div>
-                                <button type="submit" class="btn btn-block btn-primary">
+                                <button type="submit" class="btn btn-block btn-outline-primary shadow-sm">
                                     {{ trans('starmoozie::base.change_password') }}
                                 </button>
                             </div>

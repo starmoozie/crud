@@ -34,7 +34,7 @@
             <div class="col-sm-4">
                 <div class="checkbox">
                   <label class="font-weight-normal">
-                    <input type="checkbox" value="{{ $key }}" @include('crud::fields.inc.attributes')> {{ $option }}
+                    <input type="checkbox" value="{{ $key }}"> {{ $option }}
                   </label>
                 </div>
             </div>

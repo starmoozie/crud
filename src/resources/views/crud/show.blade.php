@@ -2,7 +2,7 @@
 
 @php
   $defaultBreadcrumbs = [
-    trans('starmoozie::base.dashboard') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
+    trans('starmoozie::crud.admin') => url(config('starmoozie.base.route_prefix'), 'dashboard'),
     $crud->entity_name_plural => url($crud->route),
     trans('starmoozie::crud.preview') => false,
   ];
@@ -13,12 +13,14 @@
 
 @section('header')
 	<section class="container-fluid d-print-none">
-    	<a href="javascript: window.print();" class="btn float-right"><i class="la la-print"></i></a>
+		@if ($crud->hasAccess('print'))
+			<a href="javascript: window.print();" class="btn float-right"><i class="la la-print"></i></a>
+		@endif
 		<h2>
 	        <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-	        <small>{!! $crud->getSubheading() ?? mb_ucfirst(trans('starmoozie::crud.preview')).' '.$crud->entity_name !!}.</small>
+	        <small>{!! $crud->getSubheading() ?? mb_ucfirst(trans('starmoozie::crud.preview')) !!}.</small>
 	        @if ($crud->hasAccess('list'))
-	          <small class=""><a href="{{ url($crud->route) }}" class="font-sm"><i class="la la-angle-double-left"></i> {{ trans('starmoozie::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a></small>
+	          <small class=""><a href="{{ url($crud->route) }}" class="font-sm"><i class="la la-angle-double-left"></i> {{ trans('starmoozie::crud.back_to_all') }}</a></small>
 	        @endif
 	    </h2>
     </section>
@@ -47,8 +49,8 @@
 				</div>
 			</div>
 	    @endif
-	    <div class="card no-padding no-border table-responsive shadow-sm">
-			<table class="table table-striped mb-0">
+	    <div class="card no-padding no-border">
+			<table class="table table-striped mb-0 shadow-sm">
 		        <tbody>
 		        @foreach ($crud->columns() as $column)
 		            <tr>

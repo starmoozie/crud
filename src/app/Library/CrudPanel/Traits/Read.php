@@ -2,6 +2,8 @@
 
 namespace Starmoozie\CRUD\app\Library\CrudPanel\Traits;
 
+use Exception;
+
 /**
  * Properties and methods used by the List operation.
  */
@@ -38,7 +40,7 @@ trait Read
     {
         $id = $this->getCurrentEntryId();
 
-        if (! $id) {
+        if ($id === false) {
             return false;
         }
 
@@ -82,8 +84,22 @@ trait Read
     {
         $relationships = $this->getColumnsRelationships();
 
-        if (count($relationships)) {
-            $this->with($relationships);
+        foreach ($relationships as $relation) {
+            if (strpos($relation, '.') !== false) {
+                $parts = explode('.', $relation);
+                $model = $this->model;
+
+                // Iterate over each relation part to find the valid relations without attributes
+                // We should eager load the relation but not the attribute
+                foreach ($parts as $i => $part) {
+                    try {
+                        $model = $model->$part()->getRelated();
+                    } catch (Exception $e) {
+                        $relation = join('.', array_slice($parts, 0, $i));
+                    }
+                }
+            }
+            $this->with($relation);
         }
     }
 
@@ -231,7 +247,7 @@ trait Read
      *
      * @param array|int $menu
      *
-     * https://starmoozieforlaravel.com/docs/4.1/crud-cheat-sheet#page-length
+     * https://starmoozie.com/docs/4.1/crud-cheat-sheet#page-length
      */
     public function setPageLengthMenu($menu)
     {

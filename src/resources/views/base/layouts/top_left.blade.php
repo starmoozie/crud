@@ -12,7 +12,7 @@
 
         <div class="app-body">
 
-            @include(starmoozie_view('inc.sidebar'))
+          @include(starmoozie_view('inc.sidebar'))
 
             <main class="main pt-2">
 
@@ -37,6 +37,7 @@
                 <footer class="{{ config('starmoozie.base.footer_class') }}">
                     @include(starmoozie_view('inc.footer'))
                 </footer>
+
             </main>
 
         </div><!-- ./app-body -->

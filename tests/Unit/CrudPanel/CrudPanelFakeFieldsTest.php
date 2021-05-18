@@ -5,6 +5,9 @@ namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 use Starmoozie\CRUD\Tests\Unit\Models\Article;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\FakeFields
+ */
 class CrudPanelFakeFieldsTest extends BaseDBCrudPanelTest
 {
     private $fakeFieldsArray = [

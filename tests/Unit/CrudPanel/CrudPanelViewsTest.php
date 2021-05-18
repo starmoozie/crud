@@ -4,6 +4,9 @@ namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 
 use Config;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Views
+ */
 class CrudPanelViewsTest extends BaseCrudPanelTest
 {
     private $customView = 'path/to/custom/view';

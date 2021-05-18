@@ -3,7 +3,7 @@
     <head>
         @include(starmoozie_view('inc.head'))
     </head>
-    <body class="app flex-row align-items-center">
+    <body class="app flex-row align-items-center {{ config('starmoozie.base.body_class') }}">
 
         @yield('header')
 

@@ -4,6 +4,9 @@ namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 
 use Starmoozie\CRUD\app\Exceptions\AccessDeniedException;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Access
+ */
 class CrudPanelAccessTest extends BaseCrudPanelTest
 {
     private $unknownPermission = 'unknownPermission';

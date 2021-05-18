@@ -6,17 +6,17 @@
             <div class="btn-group" role="group">
         @endif
 
-        <button type="submit" class="btn btn-outline-success btn-sm shadow-sm">
+        <button type="submit" class="btn btn-sm btn-outline-success shadow-sm">
             <span class="la la-save" role="presentation" aria-hidden="true"></span> &nbsp;
             <span data-value="{{ $saveAction['active']['value'] }}">{{ $saveAction['active']['label'] }}</span>
         </button>
 
         <div class="btn-group" role="group">
             @if(!empty($saveAction['options']))
-                <button id="btnGroupDrop1" type="button" class="btn btn-outline-success dropdown-toggle btn-sm shadow-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span><span class="sr-only">&#x25BC;</span></button>
+                <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-success shadow-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span><span class="sr-only">&#x25BC;</span></button>
                 <div class="dropdown-menu shadow-sm" aria-labelledby="btnGroupDrop1">
                     @foreach( $saveAction['options'] as $value => $label)
-                    <a class="dropdown-item sha" href="javascript:void(0);" data-value="{{ $value }}">{{ $label }}</a>
+                    <a class="dropdown-item" href="javascript:void(0);" data-value="{{ $value }}">{{ $label }}</a>
                     @endforeach
                 </div>
             @endif
@@ -27,7 +27,7 @@
         @endif
 
         @if(!$crud->hasOperationSetting('showCancelButton') || $crud->getOperationSetting('showCancelButton') == true)
-            <a href="{{ $crud->hasAccess('list') ? url($crud->route) : url()->previous() }}" class="btn btn-default btn-sm shadow-sm"><span class="la la-ban"></span> &nbsp;{{ trans('starmoozie::crud.cancel') }}</a>
+            <a href="{{ $crud->hasAccess('list') ? url($crud->route) : url()->previous() }}" class="btn btn-sm btn-default shadow-sm"><span class="la la-ban"></span> &nbsp;{{ trans('starmoozie::crud.cancel') }}</a>
         @endif
 
     </div>

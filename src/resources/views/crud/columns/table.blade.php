@@ -19,7 +19,7 @@
 
     @includeWhen(!empty($column['wrapper']), 'crud::columns.inc.wrapper_start')
 
-    <table class="table table-bordered table-condensed table-striped m-b-0 table-sm">
+    <table class="table table-bordered table-condensed table-striped m-b-0">
 		<thead>
 			<tr>
 				@foreach($columns as $tableColumnKey => $tableColumnLabel)

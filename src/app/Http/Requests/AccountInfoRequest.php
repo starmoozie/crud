@@ -25,7 +25,7 @@ class AccountInfoRequest extends FormRequest
      */
     public function validationData()
     {
-        return $this->only(starmoozie_authentication_column(), strtolower(__('starmoozie::base.name')));
+        return $this->only(starmoozie_authentication_column(), 'name');
     }
 
     /**
@@ -41,9 +41,10 @@ class AccountInfoRequest extends FormRequest
             starmoozie_authentication_column() => [
                 'required',
                 starmoozie_authentication_column() == 'email' ? 'email' : '',
-                Rule::unique($user->getTable())->ignore($user->getKey(), $user->getKeyName()),
+                Rule::unique($user->getConnectionName().'.'.$user->getTable())
+                    ->ignore($user->getKey(), $user->getKeyName()),
             ],
-            strtolower(__('starmoozie::base.name')) => 'required',
+            'name' => 'required',
         ];
     }
 }

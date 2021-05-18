@@ -2,6 +2,9 @@
 
 namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\SaveActions
+ */
 class CrudPanelSaveActionsTest extends BaseDBCrudPanelTest
 {
     private $singleSaveAction;

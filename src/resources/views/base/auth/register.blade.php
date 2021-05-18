@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-4">
+        <div class="col-md-12 col-md-8 col-lg-4">
             <h3 class="text-center mb-4">{{ trans('starmoozie::base.register') }}</h3>
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-body">
                     <form class="col-md-12 p-t-10" role="form" method="POST" action="{{ route('starmoozie.auth.register') }}">
                         {!! csrf_field() !!}
@@ -13,7 +13,7 @@
                             <label class="control-label" for="name">{{ trans('starmoozie::base.name') }}</label>
 
                             <div>
-                                <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control shadow-sm {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="name" value="{{ old('name') }}" autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
@@ -27,7 +27,7 @@
                             <label class="control-label" for="{{ starmoozie_authentication_column() }}">{{ config('starmoozie.base.authentication_column_name') }}</label>
 
                             <div>
-                                <input type="{{ starmoozie_authentication_column()=='email'?'email':'text'}}" class="form-control{{ $errors->has(starmoozie_authentication_column()) ? ' is-invalid' : '' }}" name="{{ starmoozie_authentication_column() }}" id="{{ starmoozie_authentication_column() }}" value="{{ old(starmoozie_authentication_column()) }}">
+                                <input type="{{ starmoozie_authentication_column()=='email'?'email':'text'}}" class="form-control shadow-sm {{ $errors->has(starmoozie_authentication_column()) ? ' is-invalid' : '' }}" name="{{ starmoozie_authentication_column() }}" id="{{ starmoozie_authentication_column() }}" value="{{ old(starmoozie_authentication_column()) }}">
 
                                 @if ($errors->has(starmoozie_authentication_column()))
                                     <span class="invalid-feedback">
@@ -41,7 +41,7 @@
                             <label class="control-label" for="password">{{ trans('starmoozie::base.password') }}</label>
 
                             <div>
-                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password">
+                                <input type="password" class="form-control shadow-sm {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password">
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -55,7 +55,7 @@
                             <label class="control-label" for="password_confirmation">{{ trans('starmoozie::base.confirm_password') }}</label>
 
                             <div>
-                                <input type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" id="password_confirmation">
+                                <input type="password" class="form-control shadow-sm {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" id="password_confirmation">
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="invalid-feedback">
@@ -67,7 +67,7 @@
 
                         <div class="form-group">
                             <div>
-                                <button type="submit" class="btn btn-block btn-primary">
+                                <button type="submit" class="btn btn-block btn-outline-primary shadow-sm">
                                     {{ trans('starmoozie::base.register') }}
                                 </button>
                             </div>

@@ -42,7 +42,7 @@ return [
     'actions'                   => 'Aksi',
     'preview'                   => 'Lihat',
     'delete'                    => 'Hapus',
-    'admin'                     => 'Admin',
+    'admin'                     => 'Beranda',
     'details_row'               => 'Ini adalah baris rincian. Ubah sesuka Anda.',
     'details_row_loading_error' => 'Terjadi kesalahan saat memuat detail. Silakan coba lagi.',
     'clone'                     => 'Duplikat',
@@ -156,14 +156,4 @@ return [
     // InlineCreateOperation
     'related_entry_created_success' => 'Masukan terkait telah dibuat dan dipilih.',
     'related_entry_created_error' => 'Tidak dapat membuat masukan terkait.',
-
-    'today' => 'Hari Ini',
-    'yesterday' => 'Kemarin',
-    'last_7_days' => 'Seminggu Yang Lalu',
-    'last_30_days' => 'Sebulan Yang Lalu',
-    'this_month' => 'Bulan Ini',
-    'last_month' => 'Bulan Kemarin',
-    'custom_range' => 'Penyesuaian',
-    'weekLabel' => 'M',
-    'apply' => 'Terapkan',
 ];

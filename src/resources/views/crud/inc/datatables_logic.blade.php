@@ -18,16 +18,19 @@
     // datatables caches the ajax responses with pageLength in LocalStorage so when changing this
     // settings in controller users get unexpected results. To avoid that we will reset
     // the table cache when both lengths don't match.
-    let $dtCachedInfo = JSON.parse(localStorage.getItem('DataTables_crudTable_/{{$crud->getRoute()}}')) ?? [];
+    let $dtCachedInfo = JSON.parse(localStorage.getItem('DataTables_crudTable_/{{$crud->getRoute()}}'))
+        ? JSON.parse(localStorage.getItem('DataTables_crudTable_/{{$crud->getRoute()}}')) : [];
     var $dtDefaultPageLength = {{ $crud->getDefaultPageLength() }};
+    let $dtStoredPageLength = localStorage.getItem('DataTables_crudTable_/{{$crud->getRoute()}}_pageLength');
 
-    if($dtCachedInfo.length !== 0 && $dtCachedInfo.length !== $dtDefaultPageLength) {
+    if(!$dtStoredPageLength && $dtCachedInfo.length !== 0 && $dtCachedInfo.length !== $dtDefaultPageLength) {
         localStorage.removeItem('DataTables_crudTable_/{{$crud->getRoute()}}');
     }
 
     // in this page we allways pass the alerts to localStorage because we can be redirected with
     // persistent table, and this way we guarantee non-duplicate alerts.
-    $oldAlerts = JSON.parse(localStorage.getItem('starmoozie_alerts')) ?? {};
+    $oldAlerts = JSON.parse(localStorage.getItem('starmoozie_alerts'))
+        ? JSON.parse(localStorage.getItem('starmoozie_alerts')) : {};
     $newAlerts = @json($starmoozie_alerts);
 
     Object.entries($newAlerts).forEach(([type, messages]) => {
@@ -262,7 +265,11 @@
       $("#crudTable_filter input").removeClass('form-control-sm');
 
       // move "showing x out of y" info to header
+      @if($crud->getSubheading())
+      $('#crudTable_info').hide();
+      @else
       $("#datatable_info_stack").html($('#crudTable_info')).css('display','inline-flex').addClass('animated fadeIn');
+      @endif
 
       @if($crud->getOperationSetting('resetButton') ?? true)
         // create the reset button
@@ -299,6 +306,13 @@
               text: "<strong>{{ trans('starmoozie::crud.ajax_error_title') }}</strong><br>{{ trans('starmoozie::crud.ajax_error_text') }}"
           }).show();
       });
+
+        // when changing page length in datatables, save it into localStorage
+        // so in next requests we know if the length changed by user
+        // or by developer in the controller.
+        $('#crudTable').on( 'length.dt', function ( e, settings, len ) {
+            localStorage.setItem('DataTables_crudTable_/{{$crud->getRoute()}}_pageLength', len);
+        });
 
       // make sure AJAX requests include XSRF token
       $.ajaxPrefilter(function(options, originalOptions, xhr) {

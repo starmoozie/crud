@@ -4,6 +4,9 @@ namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 
 use Starmoozie\CRUD\Tests\Unit\Models\User;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Fields
+ */
 class CrudPanelFieldsTest extends BaseDBCrudPanelTest
 {
     private $oneTextFieldArray = [

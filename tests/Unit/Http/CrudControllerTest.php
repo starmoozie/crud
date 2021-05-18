@@ -5,6 +5,9 @@ namespace Starmoozie\CRUD\Tests\Unit\Http;
 use Starmoozie\CRUD\app\Library\CrudPanel\CrudPanel;
 use Starmoozie\CRUD\Tests\BaseTest;
 
+/**
+ * @covers Starmoozie\CRUD\app\Http\Controllers\CrudController
+ */
 class CrudControllerTest extends BaseTest
 {
     private $crudPanel;

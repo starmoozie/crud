@@ -25,7 +25,7 @@ class AdminController extends Controller
     {
         $this->data['title'] = trans('starmoozie::base.dashboard'); // set the page title
         $this->data['breadcrumbs'] = [
-            trans('starmoozie::base.dashboard')     => starmoozie_url('dashboard'),
+            trans('starmoozie::crud.admin')     => starmoozie_url('dashboard'),
             trans('starmoozie::base.dashboard') => false,
         ];
 

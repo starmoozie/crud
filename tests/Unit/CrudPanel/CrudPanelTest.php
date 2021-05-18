@@ -5,6 +5,9 @@ namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 use Starmoozie\CRUD\Tests\Unit\Models\TestModel;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\CrudPanel
+ */
 class CrudPanelTest extends BaseCrudPanelTest
 {
     public function testSetModelFromModelClass()

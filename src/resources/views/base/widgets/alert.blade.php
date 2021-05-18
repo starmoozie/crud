@@ -1,6 +1,6 @@
 @includeWhen(!empty($widget['wrapper']), 'starmoozie::widgets.inc.wrapper_start')
 
-<div class="{{ $widget['class'] ?? 'alert alert-primary' }}" role="alert">
+<div class="{{ $widget['class'] ?? 'alert alert-primary shadow-sm' }}" role="alert">
 
 	@if (isset($widget['close_button']) && $widget['close_button'])	
 	<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>

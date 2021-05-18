@@ -1,5 +1,10 @@
-### Changelog
+# Changelog
 
-#### 1.x-dev (2021-03-18)
+# Starmoozie Version 1.0
 
-- Initial Commit
+-----------
+
+## 1.0 - 2020-05-08
+
+### Fixed
+- Initial Master;

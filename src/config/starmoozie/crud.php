@@ -2,6 +2,8 @@
 
 return [
 
+    'dynamic_menu'  => false,
+
     /*
     |--------------------------------------------------------------------------
     | Starmoozie\CRUD preferences
@@ -35,7 +37,7 @@ return [
             // the time the table will be persisted in minutes
             // after this the table info is cleared from localStorage.
             // use false to never force localStorage clear. (default)
-            // keep in mind: User can clear his localStorage whenever he wants.
+            // keep in mind: User can clear their localStorage whenever they want.
 
             'persistentTableDuration' => false,
 
@@ -61,7 +63,7 @@ return [
             // that allows the user to erase local storage for that datatable,
             // thus clearing any searching, filtering or pagination that has been
             // remembered and persisted using persistentTable
-            'resetButton' => true,
+            'resetButton' => false,
         ],
 
         /*
@@ -151,7 +153,7 @@ return [
         'reorder' => [
             // Define the size/looks of the content div for all CRUDs
             // To override per Controller use $this->crud->setReorderContentClass('class-string')
-            'contentClass'   => 'col-md-12',
+            'contentClass'   => 'col-md-12 bold-labels',
         ],
 
     ],
@@ -326,7 +328,7 @@ return [
         // "fr_SN" => "French (Senegal)",
         // "fr_CH" => "French (Switzerland)",
         // "fr_TG" => "French (Togo)",
-        'fr' => 'French',
+        // 'fr' => 'French',
         // "ff_SN" => "Fulah (Senegal)",
         // "ff" => "Fulah",
         // "gl_ES" => "Galician (Spain)",
@@ -367,12 +369,12 @@ return [
         // "ig_NG" => "Igbo (Nigeria)",
         // "ig" => "Igbo",
         // "id_ID" => "Indonesian (Indonesia)",
-        // "id" => "Indonesian",
+        "id" => "Indonesian",
         // "ga_IE" => "Irish (Ireland)",
         // "ga" => "Irish",
         // "it_IT" => "Italian (Italy)",
         // "it_CH" => "Italian (Switzerland)",
-        'it' => 'Italian',
+        // 'it' => 'Italian',
         // "ja_JP" => "Japanese (Japan)",
         // "ja" => "Japanese",
         // "kea_CV" => "Kabuverdianu (Cape Verde)",
@@ -477,7 +479,7 @@ return [
         // "pa" => "Punjabi",
         // "ro_MD" => "Romanian (Moldova)",
         // "ro_RO" => "Romanian (Romania)",
-        'ro' => 'Romanian',
+        // 'ro' => 'Romanian',
         // "rm_CH" => "Romansh (Switzerland)",
         // "rm" => "Romansh",
         // "rof_TZ" => "Rombo (Tanzania)",

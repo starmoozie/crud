@@ -4,6 +4,9 @@ namespace Starmoozie\CRUD\Tests\Unit\CrudPanel;
 
 use Starmoozie\CRUD\Tests\Unit\Models\Article;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\FakeColumns
+ */
 class CrudPanelFakeColumnsTest extends BaseDBCrudPanelTest
 {
     private $emptyFakeColumnsArray = ['extras'];

@@ -1,5 +1,5 @@
 @if ($crud->hasAccess('clone'))
-	<a href="javascript:void(0)" onclick="cloneEntry(this)" data-route="{{ url($crud->route.'/'.$entry->getKey().'/clone') }}" class="btn btn-sm btn-link shadow-sm" data-button-type="clone"><i class="la la-copy"></i> {{ trans('starmoozie::crud.clone') }}</a>
+	<a href="javascript:void(0)" onclick="cloneEntry(this)" data-route="{{ url($crud->route.'/'.$entry->getKey().'/clone') }}" class="btn btn-sm btn-outline-info shadow-sm" data-button-type="clone"><i class="la la-copy"></i> {{ trans('starmoozie::crud.clone') }}</a>
 @endif
 
 {{-- Button Javascript --}}
@@ -30,7 +30,7 @@
                   $('.modal').modal('hide');
 
                   if (typeof crud !== 'undefined') {
-                    crud.table.ajax.reload();
+                    crud.table.draw(false);
                   }
               },
               error: function(result) {

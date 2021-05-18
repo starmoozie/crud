@@ -7,18 +7,19 @@
 
 @includeWhen(!empty($widget['wrapper']), 'starmoozie::widgets.inc.wrapper_start')
 	<div class="jumbotron mb-2 shadow-sm">
-		@if (isset($widget['heading']))
-			<h1 class="display-3">{!! $widget['heading'] !!}</h1>
-		@endif
 
-		@if (isset($widget['content']))
-			<p>{!! $widget['content'] !!}</p>
-		@endif
+	  @if (isset($widget['heading']))
+	  <h1 class="display-3">{!! $widget['heading'] !!}</h1>
+	  @endif
 
-		@if (isset($widget['button_link']))
-			<p class="lead">
-				<a class="btn btn-outline-primary btn-sm shadow-sm" href="{{ $widget['button_link'] }}" role="button">{{ $widget['button_text'] }}</a>
-			</p>
-		@endif
+	  @if (isset($widget['content']))
+	  <p>{!! $widget['content'] !!}</p>
+	  @endif
+
+	  @if (isset($widget['button_link']))
+	  <p class="lead">
+	    <a class="btn btn-sm btn-outline-primary shadow-sm" href="{{ $widget['button_link'] }}" role="button">{{ $widget['button_text'] }}</a>
+	  </p>
+	  @endif
 	</div>
 @includeWhen(!empty($widget['wrapper']), 'starmoozie::widgets.inc.wrapper_end')

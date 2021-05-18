@@ -7,6 +7,9 @@ use Faker\Factory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @covers Starmoozie\CRUD\app\Library\CrudPanel\Traits\Update
+ */
 class CrudPanelUpdateTest extends BaseDBCrudPanelTest
 {
     private $userInputFields = [

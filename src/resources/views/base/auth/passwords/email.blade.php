@@ -26,7 +26,7 @@
                             <label class="control-label" for="email">{{ trans('starmoozie::base.email_address') }}</label>
 
                             <div>
-                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" value="{{ old('email') }}" autofocus>
+                                <input type="email" class="form-control shadow-sm{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" value="{{ old('email') }}" autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -38,7 +38,7 @@
 
                         <div class="form-group mb-3">
                             <div>
-                                <button type="submit" class="btn btn-block btn-primary">
+                                <button type="submit" class="btn btn-block btn-outline-primary shadow-sm">
                                     {{ trans('starmoozie::base.send_reset_link') }}
                                 </button>
                             </div>

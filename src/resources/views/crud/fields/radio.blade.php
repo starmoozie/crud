@@ -5,7 +5,7 @@
 
     // check if attribute is casted, if it is, we get back un-casted values
     if(Arr::get($crud->model->getCasts(), $field['name']) === 'boolean') {
-        $optionValue = $optionValue === true ? 1 : 0;
+        $optionValue = (int) $optionValue;
     }
 
     // if the class isn't overwritten, use 'radio'
@@ -13,6 +13,7 @@
         $field['attributes']['class'] = 'radio';
     }
 
+    $field['wrapper'] = $field['wrapper'] ?? $field['wrapperAttributes'] ?? [];
     $field['wrapper']['data-init-function'] = $field['wrapper']['data-init-function'] ?? 'bpFieldInitRadioElement';
 @endphp
 
