@@ -11,6 +11,9 @@
 
 	{{-- Show the file name and a "Clear" button on EDIT form. --}}
     @if (!empty($field['value']))
+    <?php
+        $value = explode('/', $field['value']);
+    ?>
     <div class="existing-file">
         @if (isset($field['disk']))
         @if (isset($field['temporary']))
@@ -21,7 +24,7 @@
         @else
             <a target="_blank" href="{{ (asset(Arr::get($field, 'prefix', '').$field['value'])) }}">
         @endif
-            {{ $field['value'] }}
+            {{ end($value) }}
         </a>
     	<a href="#" class="file_clear_button btn btn-light btn-sm float-right" title="Clear file"><i class="la la-remove"></i></a>
     	<div class="clearfix"></div>

@@ -21,7 +21,7 @@
 		  text: "{!! trans('starmoozie::crud.delete_confirm') !!}",
 		  icon: "warning",
 		  buttons: ["{!! trans('starmoozie::crud.cancel') !!}", "{!! trans('starmoozie::crud.delete') !!}"],
-		  dangerMode: true,
+		  dangerMode: true
 		}).then((value) => {
 			if (value) {
 				$.ajax({

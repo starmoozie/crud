@@ -18,7 +18,6 @@
 		@endif
 		<h2>
 	        <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-	        <small>{!! $crud->getSubheading() ?? mb_ucfirst(trans('starmoozie::crud.preview')) !!}.</small>
 	        @if ($crud->hasAccess('list'))
 	          <small class=""><a href="{{ url($crud->route) }}" class="font-sm"><i class="la la-angle-double-left"></i> {{ trans('starmoozie::crud.back_to_all') }}</a></small>
 	        @endif

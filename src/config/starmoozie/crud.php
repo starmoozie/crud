@@ -2,6 +2,25 @@
 
 return [
 
+    'app' => [
+        'reject_nd'  => 1,
+        'accept_nd'  => 2,
+        'reject_rpp' => 3,
+        'accept_rpp' => 4,
+
+        'cara_pengadaan' => [
+            0 => 'Pejabat Pengadaan',
+            1 => 'Pokja Pemilihan'
+        ],
+        'permission' => [
+            'uploadNd'   => 'upload_nd', // Upload dokumen nota dinas (ND)
+            'uploadRpp'  => 'upload_rpp', // Upload dokumen RPP
+            'uploadPbj'  => 'upload_pbj', // Upload dokumen PBJ
+            'approveNd'  => 'approve_nd', // Approve data dari dokumen upload nota dinas (ND)
+            'approveRpp' => 'approve_rpp', // Approve data dari dokumen upload RPP
+        ]
+    ],
+
     'dynamic_menu'  => false,
 
     /*

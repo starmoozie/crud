@@ -15,7 +15,6 @@
 	<section class="container-fluid">
 	  <h2>
         <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-        <small>{!! $crud->getSubheading() ?? trans('starmoozie::crud.edit') !!}.</small>
 
         @if ($crud->hasAccess('list'))
           <small><a href="{{ url($crud->route) }}" class="d-print-none font-sm"><i class="la la-angle-double-{{ config('starmoozie.base.html_direction') == 'rtl' ? 'right' : 'left' }}"></i> {{ trans('starmoozie::crud.back_to_all') }}</a></small>
